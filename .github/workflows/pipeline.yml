@@ -51,7 +51,7 @@ jobs:
         name: image
         path: image.tar
 
-   deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: build
 
