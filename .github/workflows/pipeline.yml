@@ -32,7 +32,13 @@ jobs:
 
     - name: Secret Scan
       run: docker run --rm -v $PWD:/repo zricethezav/gitleaks detect --source=/repo || true
+ 
+    - name: Install Checkov
+      run: pip install checkov
 
+    - name: IaC Security Scan
+      run: checkov -d . || true
+  
 
 # ================= BUILD =================
   build:
