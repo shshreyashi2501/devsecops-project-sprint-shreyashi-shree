@@ -38,7 +38,29 @@ jobs:
 
     - name: IaC Security Scan
       run: checkov -d . || true
-  
+
+    - name: Install Checkov
+      run: pip install checkov
+
+    - name: IaC Security Scan
+      run: checkov -d . || true
+
+    - name: Build Image for Scan
+      run: docker build -t devsecops-app .
+
+    - name: Install Trivy
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+        wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+        echo "deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/trivy.list
+        sudo apt-get update
+        sudo apt-get install -y trivy
+
+    - name: Container Vulnerability Scan
+      run: trivy image devsecops-app || true
+
+>>>>>>> 77c0ecbd2d05e027a9461143f5c9852354d53b11
 
 # ================= BUILD =================
   build:
