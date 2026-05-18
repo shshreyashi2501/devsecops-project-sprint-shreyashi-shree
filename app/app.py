@@ -2,6 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
+#new
 # ❌ intentionally vulnerable secret (for SAST demo)
 #API_KEY = "hardcoded-secret-123"
 
