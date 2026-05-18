@@ -60,7 +60,7 @@ jobs:
     - name: Container Vulnerability Scan
       run: trivy image devsecops-app || true
 
->>>>>>> 77c0ecbd2d05e027a9461143f5c9852354d53b11
+
 
 # ================= BUILD =================
   build:
